@@ -1,6 +1,5 @@
 import requests
 import json
-from requests_toolbelt.multipart.encoder import MultipartEncoder
 
 class PetFriends:
     def __init__(self):
