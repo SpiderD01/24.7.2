@@ -35,3 +35,34 @@ class PetFriends:
         except:
             result = res.text
         return status, result
+
+    def delete_pet(self, auth_key: json, pet_id: str):
+        headers = {'auth_key': auth_key['key']}
+
+        res = requests.delete(self.base_url + 'api/pets/' + pet_id, headers=headers)
+
+        status = res.status_code
+        result = ""
+        try:
+            result = res.json()
+        except:
+            result = res.text
+        return status, result
+
+    def post_add_new_pet_without_photo(self, auth_key: json, name: str, animal_type: str, age: int):
+        headers = {'auth_key': auth_key['key']}
+        data = {
+                'name': name,
+                'animal_type': animal_type,
+                'age': age,
+        }
+
+        res = requests.post(self.base_url+'api/create_pet_simple', headers=headers, data=data)
+
+        status = res.status_code
+        result = ''
+        try:
+            result = res.json()
+        except:
+            result = res.text
+        return status, result
